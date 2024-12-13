@@ -16,8 +16,7 @@ ns  IN  A   10.24.3.148
 www IN  A   10.24.3.148
 portal IN CNAME www
 ana    IN CNAME www
-mail   IN CNAME www #add
-proxy  IN CNAME www #add
+
 
 
 
