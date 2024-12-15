@@ -1,17 +1,15 @@
 FROM ubuntu:latest
 
-RUN apt-get update && apt-get install -y dnsutils bind9
+# Atualizar repositórios e instalar BIND9 e DNS utils
+RUN apt update -y && apt install bind9 dnsutils -y
 
-#copiar arq pra dentro da img
-COPY named.conf.local /etc/bind
+# Copiar arquivos de configuração
+COPY named.conf.local /etc/bind/named.conf.local
+COPY db.asa.br /etc/bind/db.asa.br
 
-COPY db.asa.br /etc/bind
-
-#CMD ["/usr/sbin/named", "-g", "-c", "/etc/bind/named.conf"]
-EXPOSE 53/tcp 
+# Expor as portas do DNS
+EXPOSE 53/tcp
 EXPOSE 53/udp
-#63:63
 
-#TODO CONTAINER DOCKER PRECISA DE UM PONTO DE ENTRADA/EXECUCAO PARA MANTER O CONTAINER 
-#EM FUNCIONAMENTO
+# Comando para iniciar o BIND em primeiro plano
 CMD ["/usr/sbin/named", "-g", "-c", "/etc/bind/named.conf", "-u", "bind"]
