@@ -1,21 +1,19 @@
-;
-; BIND data file for local loopback interface
-;
+; BIND data file for asa.br zone
 $TTL 604800
 @   IN  SOA ns.asa.br. root.asa.br. (
-                  2       ; Serial
-             604800       ; Refresh
-              86400       ; Retry
-            2419200       ; Expire
-             604800 )     ; Negative Cache TTL
-;
-@   IN  NS  ns.
-@   IN  A   10.24.3.148
-ns  IN  A   10.24.3.148
+            1        ; Serial
+         604800     ; Refresh
+          86400     ; Retry
+        2419200     ; Expire
+         604800 )   ; Negative Cache TTL
 
-www IN  A   10.24.3.148
-portal IN CNAME www
-ana    IN CNAME www
+@       IN  NS  ns.
+@       IN  A   192.168.1.103
+www     IN  A   192.168.1.103
+portal  IN  CNAME   www
+ana     IN  CNAME   www
+ns      IN  A   192.168.1.103
+
 
 
 
